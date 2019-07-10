@@ -9,6 +9,7 @@ public class DialogueManager : MonoBehaviour {
 	[SerializeField] private GameObject responseLoad;
 	//[SerializeField] private GameObject rTypeLoad2;
 	[SerializeField] private Button leaveBtn;
+
     public Text Speaker;
     public Text dialogueText;
 	public Button contBtn1;
@@ -21,16 +22,77 @@ public class DialogueManager : MonoBehaviour {
 	//private lyricsEntryHandler LEHandler;
 	//private int LELoadKey;
 	private bool multipleSentences;
-	
-	void Awake(){
+
+    /*void Awake(){
 		//LEHandler = DialogueCanvas.GetComponent<lyricsEntryHandler> ();
 
-		refLibrary lib = GameObject.FindGameObjectWithTag ("ManagerSystem").GetComponent<refLibrary> ();
-		lib.dlgManager = gameObject;
-		lib.dlgInterface = this;
-	}
+		//refLibrary lib = GameObject.FindGameObjectWithTag ("ManagerSystem").GetComponent<refLibrary> ();
+		//lib.dlgManager = gameObject;
+		//lib.dlgInterface = this;
+	}*/
 
-	public void outputDialogue(string NPCName, string[] sentences, string[] btnTitles)
+
+    public string[] getContOptions(string branchPath, Dictionary<string, string[]> dRef)
+    {
+        string[] contOptions = new string[2];
+        try
+        {
+            contOptions = dRef[branchPath];
+        }
+        catch (KeyNotFoundException)
+        {
+            contOptions = new string[2];
+        }
+
+        return contOptions;
+    }
+
+    public string[] getOration(string branchPath, Dictionary<string, string> dRef)
+    {
+        string[] newOration = new string[] { };
+        try
+        {
+            string Oration = dRef[branchPath];
+            newOration = new string[] { Oration };
+        }
+        catch (KeyNotFoundException)
+        {
+            string Oration_a = dRef[branchPath + "a"];
+            string Oration_b = dRef[branchPath + "b"];
+            try
+            {
+                string Oration_c = dRef[branchPath + "c"];
+                newOration = new string[] { Oration_a, Oration_b, Oration_c };
+            }
+            catch (KeyNotFoundException)
+            {
+                newOration = new string[] { Oration_a, Oration_b };
+            }
+        }
+
+        return newOration;
+    }
+
+    
+
+    public IEnumerator displayResponse(Dictionary<string, string> responseArchive, string path, Action<bool> canContinue)
+    {
+        //refLibrary Library = GameObject.FindWithTag("ManagerSystem").GetComponent<refLibrary>();
+
+        string[] options_Filler = new string[0];
+
+        string[] Response = new string[] { responseArchive[path] };
+        outputDialogue("Faust", Response, options_Filler, -1);
+
+        yield return new WaitForSeconds(3.0f);
+
+        canContinue(true);
+        yield break;
+    }
+
+
+
+    public void outputDialogue(string NPCName, string[] sentences, string[] btnTitles)
 	{
 		//anim.SetBool("isOpen", true);
 		//contBtnFinal.gameObject.SetActive (false);
@@ -40,25 +102,26 @@ public class DialogueManager : MonoBehaviour {
 
 		int rOptions = 0;
 		//Loading response-type appropriate settings
-		if(chantKey > -1){
+		/*if(chantKey > -1){
 			rOptions = 3;
 			LELoadKey = chantKey;
-		}else {
-			//Conversational reponse display
-			if (btnTitles.Length == 0) {
-				//Empty title arrays denote player response displays
-				rOptions = 1;
-			} else if (btnTitles.Length == 1) {
-				//Title arrays of length 1 denote closing NPC sentence displays
-				rOptions = 2;
-				contBtnFinalTxt.text = btnTitles [0];
-			} else {
-				//Regular sentence display load
-				rOptions = 0;
-				contBtn1Txt.text = btnTitles [0];
-				contBtn2Txt.text = btnTitles [1];
-			}
-		} /*else if (rType == 2) {
+		}else {*/
+		//Conversational reponse display
+		if (btnTitles.Length == 0) {
+            //Empty title arrays denote player response displays
+			rOptions = 1;
+		} else if (btnTitles.Length == 1) {
+			//Title arrays of length 1 denote closing NPC sentence displays
+			rOptions = 2;
+			contBtnFinalTxt.text = btnTitles [0];
+		} else {
+			//Regular sentence display load
+			rOptions = 0;
+			contBtn1Txt.text = btnTitles [0];
+			contBtn2Txt.text = btnTitles [1];
+		}
+		//} 
+        /*else if (rType == 2) {
 			//Lyrics entry response display
 			rOptions = 3;
 			LELoadKey = chantKey;
@@ -119,12 +182,12 @@ public class DialogueManager : MonoBehaviour {
 			} else if (rType == 2) {
 				contBtnFinal.gameObject.SetActive (true);
 				yield break;
-			} else if (rType == 3) {
+			} /*else if (rType == 3) {
 				yield return new WaitForSeconds (4.5f);
 				rTypeLoad2.SetActive (true);
 
 				LEHandler.initiateLE (LELoadKey);
-			}
+			}*/
 		}
     }
 	/*
