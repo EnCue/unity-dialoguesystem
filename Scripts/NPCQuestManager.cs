@@ -27,24 +27,28 @@ public class NPCQuestManager : MonoBehaviour
 
 
 
+    //CALLED BY NPCS UPON USER INTERACTION
     public IEnumerator qNPCDirectory(string caller)
     {
 
+        //Handler for NPC in provided example
         if (caller == "sampleNPC_I")
         {
+            //Basic template for NPC quest handler
 
-            StartCoroutine(sampleQuest(wasSuccessful =>
-            {
+            //Begins quest coroutine
+            StartCoroutine(sampleQuest(wasSuccessful => {
+
                 if (!wasSuccessful)
                 {
                     Debug.Log("Failed quest; prompting restart.");
-                        //INSERT HANDLER FOR QUEST FAILURE
-                    }
+                    //**HANDLER FOR QUEST FAILURE**
+                }
                 else
                 {
                     Debug.Log("Quest succesfully completed; returning to start");
-                        
-                    }
+                    //PROCEED
+                }
             }));
         }
         else
@@ -78,13 +82,10 @@ public class NPCQuestManager : MonoBehaviour
 
         while (true)
         {
-			Debug.Log ("0");
             string[] newOration = dInterface.getOration(branchPath, dRef_NPC);
-			Debug.Log ("1");
             contOptions = dRef_btnTxt[branchPath];
-			Debug.Log ("2");
             dInterface.outputDialogue(NPCname, newOration, contOptions);
-			Debug.Log ("3");
+            
             inputReceived = false;
             yield return new WaitUntil(() => inputReceived);
 

@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class DialogueManager : MonoBehaviour {
 	[SerializeField] private GameObject DialogueCanvas;
 	[SerializeField] private GameObject btnLoad;
-	//[SerializeField] private GameObject rTypeLoad2;
 	[SerializeField] private Button leaveBtn;
 
     public Text Speaker;
@@ -19,17 +18,7 @@ public class DialogueManager : MonoBehaviour {
 	public Text leaveBtnTxt;
 
     public Animator anim;
-	//private lyricsEntryHandler LEHandler;
-	//private int LELoadKey;
 	private bool multipleSentences;
-
-    /*void Awake(){
-		//LEHandler = DialogueCanvas.GetComponent<lyricsEntryHandler> ();
-
-		//refLibrary lib = GameObject.FindGameObjectWithTag ("ManagerSystem").GetComponent<refLibrary> ();
-		//lib.dlgManager = gameObject;
-		//lib.dlgInterface = this;
-	}*/
 
 
     public string[] getContOptions(string branchPath, Dictionary<string, string[]> dRef)
@@ -77,8 +66,6 @@ public class DialogueManager : MonoBehaviour {
 
     public IEnumerator displayResponse(Dictionary<string, string> responseArchive, string path, Action<bool> canContinue)
     {
-        //refLibrary Library = GameObject.FindWithTag("ManagerSystem").GetComponent<refLibrary>();
-
         string[] options_Filler = new string[0];
 
         string[] Response = new string[] { responseArchive[path] };
@@ -97,7 +84,6 @@ public class DialogueManager : MonoBehaviour {
 		anim.SetBool("isOpen", true);
 		leaveBtn.gameObject.SetActive (false);
 		btnLoad.SetActive(false);
-		//rTypeLoad2.SetActive (false);
 		Speaker.text = NPCName;
 
 		int rOptions = 0;
@@ -145,14 +131,7 @@ public class DialogueManager : MonoBehaviour {
             else {
                 yield break;
             }
-            
-
-			/*if (i <= (iterator - 1)) {
-				StartCoroutine (TypeSentence (currentSentence, -1, true));
-				yield return new WaitForSeconds (4.5f);
-			} else {
-				StartCoroutine (TypeSentence (currentSentence, btnLoad, false));
-			}*/
+        
 		}
 		yield break;
 	}
@@ -177,48 +156,9 @@ public class DialogueManager : MonoBehaviour {
 			} else if (rType == 2) {
 				leaveBtn.gameObject.SetActive (true);
 				yield break;
-			} /*else if (rType == 3) {
-				yield return new WaitForSeconds (4.5f);
-				rTypeLoad2.SetActive (true);
-
-				LEHandler.initiateLE (LELoadKey);
-			}*/
+			}
 		}
     }
-	/*
-	//Sentence handler for multi-sentence responses
-	IEnumerator TypeSentences(string[] sentences, int rType)
-	{
-		Debug.Log ("Reached typeSentences");
-		string sentence_I = sentences [0];
-		string sentence_II = sentences [1];
-		dialogueText.text = "";
-		foreach (char letter in sentence_I.ToCharArray())
-		{
-			dialogueText.text += letter;
-			yield return null;
-		}
-		yield return new WaitForSeconds (6.0f);
-		dialogueText.text = "";
-
-		foreach (char letter in sentence_II.ToCharArray())
-		{
-			dialogueText.text += letter;
-			yield return null;
-		}
-
-		if (rType == 0) {
-			rTypeLoad1.SetActive (true);
-		} else if (rType == 2) {
-			contBtnFinal.gameObject.SetActive (true);
-		} else if (rType == 3) {
-			yield return new WaitForSeconds (3.0f);
-			rTypeLoad2.SetActive (true);
-
-			LEHandler.initiateLE (LELoadKey);
-		}
-	}*/
-
 
 
 	public void EndDialogue()
