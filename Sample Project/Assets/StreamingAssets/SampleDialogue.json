@@ -1,0 +1,9 @@
+{
+    "Name":"NPC #1",
+    "tags_NPC":["smplDialogue","smplDialogue0a","smplDialogue0b","smplDialogue1a","smplDialogue1b","smplDialogue00a","smplDialogue00b","smplDialogue01a","smplDialogue01b","smplDialogue10a","smplDialogue10b","smplDialogue11a","smplDialogue11b"],
+    "tags_Usr":["smplDialogue0","smplDialogue1","smplDialogue00","smplDialogue01","smplDialogue10","smplDialogue11"],
+    "Sentences":["Opening NPC Statement","NPC Response to L","NPC Response to L","NPC Response to R","NPC Response to R","NPC Response to LL","NPC Response to LL","NPC Response to LR","NPC Response to LR","NPC Response to RL","NPC Response to RL","NPC Response to RR","NPC Response to RR"],
+    "Responses":["Player Response to L","Player Response to R","Player Response to LL","Player Response to LR","Player Response to RL","Player Response to RR"],
+    "btnText": ["L","R","LL","LR","RL","RR","Exit","Exit","Exit","Exit"],
+	"tags_bText": ["smplDialogue","smplDialogue","smplDialogue0","smplDialogue0","smplDialogue1","smplDialogue1","smplDialogue00","smplDialogue01","smplDialogue10","smplDialogue11"]
+}
