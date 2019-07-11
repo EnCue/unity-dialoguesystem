@@ -32,12 +32,12 @@ public class NPCQuestManager : MonoBehaviour
 			//Basic template for NPC quest handler
 
 			//Suspends player movement during conversation
-			Messenger<bool>.Broadcast ("canMove_updated", false);
+			Messenger<bool>.Broadcast ("canMove_Update", false);
 
 			//Begins quest coroutine
             StartCoroutine(sampleQuest(wasSuccessful => {
 				
-				Messenger<bool>.Broadcast("canMove_update", true);
+				Messenger<bool>.Broadcast("canMove_Update", true);
 
                 if (!wasSuccessful) {
                     Debug.Log("Failed quest; prompting restart.");
