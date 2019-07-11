@@ -22,14 +22,6 @@ public class NPCQuestManager : MonoBehaviour
 
     void Awake()
     {
-        //PUBLISHING THIS QUEST PACKAGE TO QUEST MANAGER DICTIONARY:
-        //questManager qMn = gameObject.GetComponent<questManager>();
-        //questPackageI designatedQInstance = new questPackageI();
-
-        //qMn.registerQBase(designatedQInstance, 1);
-
-        //stgRef_Setup();
-
         Messenger<int>.AddListener("contBtnRtrn", compileDecision);
     }
 
@@ -37,48 +29,23 @@ public class NPCQuestManager : MonoBehaviour
 
     public IEnumerator qNPCDirectory(string caller)
     {
-        //refLibrary lib = GameObject.FindGameObjectWithTag("ManagerSystem").GetComponent<refLibrary>();
-
-        //Debug.Log("AIDirectory");
-        /*
-        playerStatusLog qStatus = updateQStatus ();
-        if (qStatus.onQuest == 0) {
-            //SET TO ZERO AFTER COMPLETION
-            qStatus.onQuest = 1;
-        }*/
 
         if (caller == "sampleNPC_I")
         {
-            //Debug.Log ("T");
-            //if (!BarStatusLog.onQ)
-            //{
-            //if (BarStatusLog.Tester || !BarStatusLog.q1)
-            //{
-            //Issue quest 1:
-            //BarStatusLog.onQ = true;
 
             StartCoroutine(sampleQuest(wasSuccessful =>
             {
                 if (!wasSuccessful)
                 {
                     Debug.Log("Failed quest; prompting restart.");
-                        //lib.GOCanvas.GetComponent<GameOverUI>().promptRestart();
                         //INSERT HANDLER FOR QUEST FAILURE
                     }
                 else
                 {
                     Debug.Log("Quest succesfully completed; returning to start");
-                        //BarStatusLog.onQ = false;
-                        //BarStatusLog.q1 = true;
-                        //PROCEED
+                        
                     }
             }));
-            //}
-            //else
-            //{
-            //StartCoroutine(qNPCI_revisit());
-            //}
-            //}
         }
         else
         {
@@ -99,8 +66,6 @@ public class NPCQuestManager : MonoBehaviour
 
     private IEnumerator sampleQuest(Action<bool> Accomplished)
     {
-        //refLibrary lib = GameObject.FindWithTag("ManagerSystem").GetComponent<refLibrary>();
-        //DictionaryConverter dRef = //ADD REFERENCE TO
 		Dictionary<string, string> dRef_NPC = dRef.sample_sDict;
 		Dictionary<string, string> dRef_User = dRef.sample_rDict;
         Dictionary<string, string[]> dRef_btnTxt = dRef.btnText_Sample;
@@ -110,8 +75,6 @@ public class NPCQuestManager : MonoBehaviour
         string branchPath = "smplDialogue";
         string[] contOptions = new string[2];
         bool qFailed = false;
-        //Set qPhase to 1 to denote quest initiation
-        //qStatus.qPhase[0] = 1;
 
         while (true)
         {
@@ -132,7 +95,6 @@ public class NPCQuestManager : MonoBehaviour
                 {
                     Debug.Log("Quest Complete");
                     dInterface.EndDialogue();
-                    //qStatus.qPhase [0] = 2;
 
                     Accomplished(true);
                     yield break;
@@ -141,7 +103,6 @@ public class NPCQuestManager : MonoBehaviour
                 {
                     Debug.Log("Quest Failed");
                     dInterface.EndDialogue();
-                    //qStatus.qPhase [0] = 2;
 
                     Accomplished(false);
                     yield break;
