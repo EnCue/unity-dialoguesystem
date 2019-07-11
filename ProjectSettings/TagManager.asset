@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Torch
+  - ftTimer
+  - DialogueManager
+  - Brawler
+  - tBox
+  - Floor
+  - Scenery
+  - Barrier
+  - PlayerCollider
+  - Boss
+  - qNPC_I
+  - promptCanvas
+  - Brawlers
+  - darknessCanvas
+  - qNPC_Tester
+  - User
+  - dCanvas
+  - qNPC_II
+  - qNPC_III
+  - GameOverCanvas
+  - blBox
+  - ManagerSystem
+  - Barrel
+  - testerCanvas
+  - InventorySystem
+  - qNPC
+  - BlackScreen
+  - TesterTag
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
