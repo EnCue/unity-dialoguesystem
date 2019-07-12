@@ -8,4 +8,4 @@ http://wiki.unity3d.com/index.php?title=Advanced_CSharp_Messenger.
 Dialogue json files should be placed under a "StreamingAssets" folder within the Unity project assets.
 Alternatively, the file path found in "DictionaryCoverter.cs" can be adjusted accordingly.
 
-A functional version of the dialogue system can be found under the "Sample Project" folder of the repository.
+A functional version of the dialogue system can be found under the "Unity Demonstration" folder of the repository.
